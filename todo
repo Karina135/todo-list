@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Приложение To-Do List</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/todo.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bad+Script">
+        <link rel="shortcut icon" href="assets/favicon.ico">
+        <link rel="icon" type="image/gif" href="assets/animated_favicon.gif">
+    </head>
+    <body>
+        <div id="todo">
+            <h1>Мои списки дел <i id="pensil" class="fas fa-pencil-alt"></i></h1>
+            <input type="text" placeholder="Добавить список">
+            <ul class="todos">
+                <li><span class="todo-text">Выложить новый пост</span><span class="todo-trash"><i class="fas fa-trash-alt"></i></span></li>
+                <li><span class="todo-text">Прорешать курсы</span><span class="todo-trash"><i class="fas fa-trash-alt"></i></span></li>
+                <li><span class="todo-text">Сходить в кино</span><span class="todo-trash"><i class="fas fa-trash-alt"></i></span></li>
+            </ul>
+            <div id="buttons">
+                <button class="save">Сохранить</button>
+                <button class="clear">Очистить</button>
+                <button class="showTips">Справка</button>
+            </div>
+        </div>
+        <div id = "overlay">
+            <a href="javascript:void(0)" class="closeTips">&times;</a>
+            <ul class="tips">
+                <li>Чтобы спрятать или показать поле ввода, кликните на карандаш</li>
+                <li>Для добавления списка дел напишите текст в поле ввода и нажмите Ввод</li>
+                <li>Чтобы удалить один пункт, наведите на него и нажмите на значок корзины</li>
+                <li>Чтобы удалить все списки дел, нажмите "Очистить"</li>
+                <li>Нажмите "Сохранить", чтобы сохранить список дел на потом</li>
+            </ul>
+        </div>
+    </body>
+    <!DOCTYPE html>
+<html>
+    <head>
+        <title>Приложение To-Do List</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/todo.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bad+Script">
+        <link rel="shortcut icon" href="assets/favicon.ico">
+        <link rel="icon" type="image/gif" href="assets/animated_favicon.gif">
+    </head>
+    <body>
+        <div id="todo">
+            <h1>Мои списки дел <i id="pensil" class="fas fa-pencil-alt"></i></h1>
+            <input type="text" placeholder="Добавить список">
+            <ul class="todos">
+                <li><span class="todo-text">Выложить новый пост</span><span class="todo-trash"><i class="fas fa-trash-alt"></i></span></li>
+                <li><span class="todo-text">Прорешать курсы</span><span class="todo-trash"><i class="fas fa-trash-alt"></i></span></li>
+                <li><span class="todo-text">Сходить в кино</span><span class="todo-trash"><i class="fas fa-trash-alt"></i></span></li>
+            </ul>
+            <div id="buttons">
+                <button class="save">Сохранить</button>
+                <button class="clear">Очистить</button>
+                <button class="showTips">Справка</button>
+            </div>
+        </div>
+        <div id = "overlay">
+            <a href="javascript:void(0)" class="closeTips">&times;</a>
+            <ul class="tips">
+                <li>Чтобы спрятать или показать поле ввода, кликните на карандаш</li>
+                <li>Для добавления списка дел напишите текст в поле ввода и нажмите Ввод</li>
+                <li>Чтобы удалить один пункт, наведите на него и нажмите на значок корзины</li>
+                <li>Чтобы удалить все списки дел, нажмите "Очистить"</li>
+                <li>Нажмите "Сохранить", чтобы сохранить список дел на потом</li>
+            </ul>
+        </div>
+    </body>
+</html>
+function onPageLoaded() {
+    const input = document.querySelector("input[type='text']");
+    const ul = document.querySelector("ul.todos");
+
+    function createTodo() {
+        const li = document.createElement("li");
+        const textSpan = document.createElement("span");
+        textSpan.classList.add("todo-text");
+        const newTodo = input.value;
+        textSpan.append(newTodo);
+
+        const deleteBtn = document.createElement("span");
+        deleteBtn.classList.add("todo-trash");
+        const icon = document.createElement("i");
+        icon.classList.add("fas", "fa-trash-alt");
+        deleteBtn.appendChild(icon);
+
+        ul.appendChild(li).append(textSpan, deleteBtn);
+        input.value = "";
+        listenDeleteTodo(deleteBtn);
+    }
+
+    input.addEventListener("keypress", (keyPressed) => {
+        const keyEnter = 13;
+        if (keyPressed.which == keyEnter) {
+            createTodo();
+        }
+    });
+    ul.addEventListener("click", onClickTodo);
+}
+
+document.addEventListener("DOMContentLoaded", onPageLoaded);
+function onPageLoaded() {
+    // ...
+    function createTodo() {
+        // ...
+        listenDeleteTodo(deleteBtn);
+    }
+
+    function listenDeleteTodo(element) {
+        element.addEventListener("click", (event) => {
+            element.parentElement.remove();
+            event.stopPropagation();
+        });
+    }
+
+    // ...
+}
+
+document.addEventListener("DOMContentLoaded", onPageLoaded);
+function onPageLoaded() {
+    // ...
+    function createTodo() {
+        // ...
+    }
+
+    function onClickTodo(event) {
+        if (event.target.tagName === "LI") {
+            event.target.classList.toggle("checked");
+        }
+    }
+
+    // ...
+    ul.addEventListener("click", onClickTodo);
+    // ...
+}
+
+document.addEventListener("DOMContentLoaded", onPageLoaded);
+function onPageLoaded() {
+    const saveButton = document.querySelector("button.save");
+    const clearButton = document.querySelector("button.clear");
+    const showTipsButton = document.querySelector("button.showTips");
+    const closeTipsButton = document.querySelector("a.closeTips");
+    const overlay = document.querySelector("#overlay");
+
+    // ..
+
+    saveButton.addEventListener("click", () => {
+        localStorage.setItem("todos", ul.innerHTML);
+    });
+    clearButton.addEventListener("click", () => {
+        ul.innerHTML = "";
+        localStorage.removeItem('todos', ul.innerHTML);
+    });
+    showTipsButton.addEventListener("click", () => {
+        overlay.style.height = "100%";
+    });
+    closeTipsButton.addEventListener("click", () => {
+        overlay.style.height = "0";
+    });
+}
+
+document.addEventListener("DOMContentLoaded", onPageLoaded);
+</html>
